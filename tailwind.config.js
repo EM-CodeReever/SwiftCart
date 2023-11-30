@@ -4,9 +4,6 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [require("daisyui")],
-  daisyui: {
-    themes: ["winter", "sunset"],
-  },
+  plugins: [require("rippleui")],
 }
 
