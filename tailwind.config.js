@@ -5,5 +5,6 @@ export default {
     extend: {},
   },
   plugins: [require("rippleui")],
+  // bg-error - #f31260
 }
 
