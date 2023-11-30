@@ -8,5 +8,7 @@
 </svelte:head>
 <section class="min-h-screen w-full">
     <Navbar />
-    <p>THS IS HOME PAGE</p>
+    <section class="h-96 w-full bg-gray-300 p-5">
+
+    </section>
 </section>
