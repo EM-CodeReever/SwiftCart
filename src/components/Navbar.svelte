@@ -1,72 +1,102 @@
 <script lang="ts">
+    import ShoppingCart from "./svg/ShoppingCart.svelte";
+    import UserIcon from "./svg/UserIcon.svelte";
+
+    let userSignedIn = false;
+
 
 </script>
 
-<nav class="flex h-16 w-full items-center justify-between bg-gray-800 px-5 absolute top-0">
-    <div>
-        <a href="/">
-            <img src="https://via.placeholder.com/150" alt="logo" class="h-10 w-10">
-        </a>
-    </div>
-    
-    <div class="flex justify-center items-center">
-        <ul class="flex font-semibold text-sm">
-            <li class="px-4 py-2">
-                <a href="/" class="text-base-100 hover:underline hover:text-gray-300">Home</a>
-            </li>
-            <li class="px-4 py-2">
-                <a href="/about" class="text-base-100 hover:underline hover:text-gray-300">About</a>
-            </li>
-            <li class="px-4 py-2">
-                <a href="/contact" class="text-base-100 hover:underline hover:text-gray-300">Contact</a>
-            </li>
-            <li class="px-4 py-2">
-                <a href="/store" class="text-base-100 hover:underline hover:text-gray-300">Store</a>
-            </li>
-            <li class="px-4 py-2">
-                <a href="/categories" class="text-base-100 hover:underline hover:text-gray-300">Categories</a>
-            </li>
-            <li class="px-4 py-2">
-                <a href="/login" class="text-base-100 hover:underline hover:text-gray-300">Login</a>
-            </li>
-            <li class="px-4 py-2">
-                <a href="/register" class="text-base-100 hover:underline hover:text-gray-300">Register</a>
-            </li>
-
-        </ul>
-        <div class="dropdown dropdown-end">
-          <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-            <div class="indicator">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="white"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-              <span class="badge badge-sm indicator-item">2</span>
-            </div>
-          </div>
-          <div tabindex="0" class="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
-            <div class="card-body">
-              <span class="font-bold text-lg">2 Items</span>
-              <span class="text-info">Subtotal: $9,999</span>
-              <div class="card-actions">
-                <button class="btn btn-primary btn-block">View cart</button>
-              </div>
-            </div>
-          </div>
+<div class="navbar p-2 shadow-none bg-gray-300">
+	<div class="navbar-start">
+		<a class=" hover:bg-gray-100 p-2 rounded-lg font-bold text-xl">SwiftCart</a>
+	</div>
+	<div class="navbar-center w-full">
+		<span class="flex flex-grow">
+      <input class="input input-sm  input-block input-solid placeholder:text-sm rounded-r-none" placeholder="Search..." />
+      <button class="btn btn-sm btn-error rounded-l-none">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+        </svg>      
+      </button>
+    </span>
+	</div>
+	<div class="navbar-end">
+		
+		<div class="dropdown dropdown-hover">
+      <!-- svelte-ignore a11y-label-has-associated-control -->
+      <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+      <label tabindex="0" class="flex items-center hover:bg-gray-100 p-2 rounded-lg cursor-pointer">
+        <UserIcon />
+        <span class="hidden flex-col items-start sm:flex">
+          <p class="text-sm">Hello, sign in</p>
+          <p class="text-sm -mt-1 font-semibold">Account</p>
+        </span>
+      </label>
+      <div class="dropdown-menu my-2 w-fit dropdown-menu-bottom-left">
+        {#if !userSignedIn}
+        <div class="w-48">
+          <a href="/login" class="dropdown-item text-sm">Sign in</a>
+          <a href="/register" tabindex="-1" class="dropdown-item text-sm">Create an account</a>
         </div>
-        <div class="dropdown dropdown-end ml-3">
-          <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-            <div class="w-10 rounded-full ring-1 bg-white">
-              <img alt="Tailwind CSS Navbar component" src="https://robohash.org/ipsum" />
-            </div>
-          </div>
-          <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-            <li>
-              <a class="justify-between">
-                Profile
-                <span class="badge">New</span>
-              </a>
-            </li>
-            <li><a>Settings</a></li>
-            <li><a>Logout</a></li>
-          </ul>
+        {:else}
+        <div class="grid grid-cols-2 w-96">
+          <span class="col-span-1 flex-col">
+            <a class="dropdown-item text-sm font-bold">Account Settings</a>
+            <a tabindex="-1" class="dropdown-item text-sm font-bold">Logout</a>
+          </span>
+          <span class="col-span-1 flex flex-col">
+            <a class="dropdown-item text-sm">Purchase History</a>
+            <a tabindex="-1" class="dropdown-item text-sm">Coupons</a>
+            <a tabindex="-1" class="dropdown-item text-sm">Wishlist</a>
+          </span>
         </div>
+        {/if}
       </div>
-</nav>
+    </div>
+		<div class="dropdown dropdown-hover">
+      <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+      <!-- svelte-ignore a11y-label-has-associated-control -->
+      <label tabindex="0" class="flex items-center hover:bg-gray-100 p-2 rounded-lg cursor-pointer">
+        <ShoppingCart />
+        <span class="flex flex-col items-center justify-around">
+          <p class="text-sm font-bold">3</p>
+          <p class="text-sm -mt-2">cart</p>
+        </span>
+      </label>
+      <div class="dropdown-menu my-2 w-48 dropdown-menu-bottom-left">
+        <span class="flex flex-col space-y-2">
+          <p class="px-2 text-sm font-semibold -mb-2">3 items</p>
+          <p class="px-2 text-sm">Cart total: $1430</p>
+          <button class="btn btn-primary mt-1">View Cart</button>
+        </span>
+      </div>
+    </div>
+	</div>
+</div>
+<hr class="border-gray-100">
+<div class="navbar shadow-none p-1 bg-gray-300">
+  <div class="navbar-center space-x-2">
+    <a href="" class="nav-item text-sm hover:bg-gray-100 py-1 px-2 rounded-lg font-semibold">Deals</a>
+    <a href="" class="nav-item text-sm hover:bg-gray-100 py-1 px-2 rounded-lg font-semibold">Popular</a>
+    <div class="dropdown dropdown-hover">
+      <label tabindex="0" class="nav-item text-sm flex items-center space-x-1 hover:bg-gray-100 py-1 px-2 rounded-lg">
+        <p class="font-semibold">Categories</p> 
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-3 h-3">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+      </svg>
+    </label>
+      <div class="mt-2 dropdown-menu dropdown-menu-bottom-right ">
+        <a class="dropdown-item text-sm">Category 1</a>
+        <a tabindex="-1" class="dropdown-item text-sm">Category 2</a>
+        <a tabindex="-1" class="dropdown-item text-sm">Category 3</a>
+        <a tabindex="-1" class="dropdown-item text-sm">Category 4</a>
+        <a tabindex="-1" class="dropdown-item text-sm">Category 5</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
