@@ -3,7 +3,10 @@
 
 </script>
 
-
-<section class="w-full min-h-screen h-fit bg-gradient-to-r from-sky-400 to-blue-500">
-    
+<svelte:head>
+    <title>SwiftCart</title>
+</svelte:head>
+<section class="min-h-screen w-full">
+    <Navbar />
+    <p>THS IS HOME PAGE</p>
 </section>
