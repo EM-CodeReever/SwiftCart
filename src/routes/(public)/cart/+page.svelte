@@ -2,9 +2,10 @@
     import Navbar from '$components/Navbar.svelte';
     import CheckoutIcon from '$components/svg/CheckoutIcon.svelte';
     import CouponIcon from '$components/svg/CouponIcon.svelte';
-    import type { PageData } from './$types';
-    
+    import type { PageData } from "./$types";
     export let data: PageData;
+    let { supabase, session } = data;
+    $: ({ supabase, session } = data);
 </script>
 
 <svelte:head>
@@ -12,7 +13,7 @@
 </svelte:head>
 
 <section class="min-h-screen w-full bg-gray-200">
-    <Navbar />
+    <Navbar data={data} />
     <section class="w-full h-fit flex space-x-10 p-10 ">
         <div class="w-full h-fit max-w-7xl bg-white rounded-lg p-4">
             <span class="text-3xl font-semibold">Shopping Cart</span>
