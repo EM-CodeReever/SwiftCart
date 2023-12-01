@@ -1,6 +1,27 @@
 <script lang="ts">
+    import { goto } from "$app/navigation";
     import DotWaveLoader from "$components/DotWaveLoader.svelte";
     import SwiftCartLogo from "$components/svg/SwiftCartLogo.svelte";
+    import type { PageData } from "../$types";
+    export let data: PageData;
+    let { supabase, session } = data;
+    $: ({ supabase, session } = data);
+    let loading = false;
+    let email = "";
+    let password = "";
+
+    async function signIn() {
+        let { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+        })
+        if (error) {
+            console.log(error);
+            loading = false;
+        } else {
+           goto("/");
+        }
+    }
 
 
 </script>
@@ -52,19 +73,20 @@
     
         <div class="form-group">
             <div class="form-field">
-                <label class="form-label">Email address</label>
-    
-                <input placeholder="Type here" type="email" class="input max-w-full" />
+                <label for="email" class="form-label">Email address</label>
+                <input placeholder="Type here" type="email" class="input max-w-full" id="email" bind:value={email} />
+                <!-- svelte-ignore a11y-label-has-associated-control -->
                 <label class="form-label">
                     <span class="form-label-alt">Please enter a valid email.</span>
                 </label>
             </div>
             <div class="form-field">
+                <!-- svelte-ignore a11y-label-has-associated-control -->
                 <label class="form-label">
                     <span>Password</span>
                 </label>
                 <div class="form-control">
-                    <input placeholder="Type here" type="password" class="input max-w-full" />
+                    <input placeholder="Type here" type="password" class="input max-w-full" bind:value={password} />
                 </div>
             </div>
             <!-- <div class="form-field">
@@ -80,9 +102,15 @@
             </div> -->
             <div class="form-field pt-5">
                 <div class="form-control justify-between">
-                    <button type="button" class="btn btn-error w-full">
-                        <!-- <span>Sign In</span> -->
+                    <button type="submit" class="btn btn-error w-full" on:click|preventDefault={()=>{
+                        loading = true;
+                        signIn();
+                    }} >
+                        {#if !loading}
+                        <span>Sign In</span>
+                        {:else}
                         <DotWaveLoader />
+                        {/if}
                     </button>
                 </div>
             </div>
