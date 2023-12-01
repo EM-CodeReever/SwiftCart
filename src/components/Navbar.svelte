@@ -1,12 +1,28 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
+    import type { PageData } from "../routes/(public)/$types";
     import ShoppingCart from "./svg/ShoppingCart.svelte";
     import SwiftCartLogo from "./svg/SwiftCartLogo.svelte";
     import UserIcon from "./svg/UserIcon.svelte";
+    
+    export let data: PageData;
+    let { supabase, session } = data;
+    $: ({ supabase, session } = data);
 
-    let userSignedIn = false;
+    let userSignedIn = session != null
+    $: userSignedIn = session != null
 
 
+    $: console.log("User signed in: ", userSignedIn)
+    $: if (userSignedIn) {
+      console.log("User email: ", session?.user.email)
+    }
+
+    function signOut() {
+      supabase.auth.signOut().then(() => {
+        goto("/")
+      })
+    }
 </script>
 
 <div class="navbar p-2 shadow-none bg-gray-700">
@@ -33,7 +49,7 @@
       <label tabindex="0" class="flex space-x-1 items-center hover:bg-[#00000032] p-2 rounded-lg cursor-pointer">
         <UserIcon />
         <span class="hidden flex-col items-start sm:flex text-gray-200">
-          <p class="text-sm">Hello, sign in</p>
+          <p class="text-sm"> {userSignedIn ? 'Hello, ' + session?.user.email : 'Sign In'}</p>
           <p class="text-sm -mt-1 font-semibold">Account</p>
         </span>
       </label>
@@ -46,8 +62,10 @@
         {:else}
         <div class="grid grid-cols-2 w-96">
           <span class="col-span-1 flex-col">
-            <a href="/" class="dropdown-item text-sm font-bold">Account Settings</a>
-            <a href="/" tabindex="-1" class="dropdown-item text-sm font-bold">Logout</a>
+            <button class="dropdown-item text-sm font-bold">Account Settings</button>
+            <button tabindex="-1" class="dropdown-item text-sm font-bold" on:click={()=>{
+              signOut()
+            }}>Logout</button>
           </span>
           <span class="col-span-1 flex flex-col">
             <a href="/" class="dropdown-item text-sm">Purchase History</a>
