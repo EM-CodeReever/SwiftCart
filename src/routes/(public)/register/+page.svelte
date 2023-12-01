@@ -1,7 +1,10 @@
 <script lang="ts">
     import DotWaveLoader from "$components/DotWaveLoader.svelte";
     import SwiftCartLogo from "$components/svg/SwiftCartLogo.svelte";
-
+    import type { PageData } from "./$types";
+    export let data: PageData;
+    let { supabase, session } = data;
+    $: ({ supabase, session } = data);
 
 </script>
 
