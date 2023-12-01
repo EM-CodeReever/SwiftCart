@@ -3,8 +3,9 @@
     import type { PageData } from './$types';
     import { page } from '$app/stores';
     let productId = $page.params.productId;
-    
     export let data: PageData;
+    let { supabase, session } = data;
+    $: ({ supabase, session } = data);
 </script>
 
 <svelte:head>
@@ -12,6 +13,6 @@
 </svelte:head>
 
 <section class="min-h-screen w-full">
-    <Navbar />
+    <Navbar data={data} />
     {productId}
 </section>
