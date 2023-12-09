@@ -7,6 +7,7 @@
     let { supabase, session } = data;
     $: ({ supabase, session } = data);
     let loading = false;
+    let errorMessage = "";
     let email = "";
     let password = "";
 
@@ -16,7 +17,7 @@
             password,
         })
         if (error) {
-            console.log(error);
+            errorMessage = error.message;
             loading = false;
         } else {
            goto("/");
@@ -36,7 +37,7 @@
             <span>SwiftCart</span>
           </a>
     </div>
-    <form class="mx-auto flex w-full max-w-lg flex-col rounded-xl border border-border bg-backgroundSecondary mt-10 p-4 sm:p-20">
+    <form class="mx-auto flex w-full max-w-lg flex-col rounded-xl border border-border bg-backgroundSecondary mt-6 shadow-md p-4 sm:p-20">
         <div class="flex w-full flex-col gap-2">
             <div class="flex flex-col items-center space-y-3">
                 <h1 class="text-3xl font-semibold">Sign In</h1>
@@ -89,6 +90,7 @@
                     <input placeholder="Type here" type="password" class="input max-w-full" bind:value={password} />
                 </div>
             </div>
+            <span class="text-sm text-error">{errorMessage}</span>
             <!-- <div class="form-field">
                 <div class="form-control justify-between">
                     <div class="flex gap-2">
