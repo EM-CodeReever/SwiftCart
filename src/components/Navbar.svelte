@@ -62,7 +62,7 @@
 
 	</div>
 	<div class="navbar-end w-fit">
-		<div class="dropdown dropdown-hover">
+		<div class="dropdown dropdown-hover z-30">
       <!-- svelte-ignore a11y-label-has-associated-control -->
       <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
       <label tabindex="0" class="flex space-x-1 items-center hover:bg-[#00000032] -mr-1 sm:mr-0 p-1 sm:p-2 rounded-lg cursor-pointer">
@@ -78,7 +78,7 @@
           {/if}
         </span>
       </label>
-      <div class="dropdown-menu my-2 w-fit dropdown-menu-bottom-left">
+      <div class="dropdown-menu my-1.5 w-fit dropdown-menu-bottom-left">
         {#if !userSignedIn}
         <div class="w-48">
           <a href="/login" class="dropdown-item text-sm">Sign in</a>
@@ -123,15 +123,16 @@
     </div>
 	</div>
 </div>
-
-<div class="pb-2 justify-center items-center px-3 sm:px-8 bg-gray-700 flex md:hidden">
+<hr class="border-gray-600">
+<div class="py-2 justify-center items-center px-3 sm:px-8 bg-gray-700 flex md:hidden">
   <span class="flex-grow flex">
-    <input class="input input-sm input-block bg-[#00000032] border-transparent text-gray-200 placeholder:text-sm rounded-r-none" placeholder="Search..." />
-    <button class="btn btn-sm bg-[#00000032] rounded-l-none hover:btn-error">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-      </svg>      
-    </button>
+    <AutocompleteInput classNames="input input-sm input-block bg-[#00000032] border-transparent text-gray-200 placeholder:text-sm rounded-r-none">
+      <button class="btn btn-sm bg-[#00000032] rounded-l-none hover:btn-error">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+        </svg>      
+      </button>
+      </AutocompleteInput>
   </span>
 </div>
 
