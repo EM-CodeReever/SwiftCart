@@ -1,5 +1,6 @@
 <script lang="ts">
     import { browser } from "$app/environment";
+    import { goto, invalidateAll } from "$app/navigation";
     import { fade } from "svelte/transition";
     export let classNames = "";
     let value = "";
@@ -122,12 +123,14 @@ const setInputVal = (itemName:string) => {
 	inputValue = itemName;
 	filteredItems = [];
 	searchInput.focus();
+    // goto(`/store/${inputValue}`);
 }	
 
 const submitValue = () => {
 	if (inputValue) {
 		console.log(`${inputValue} is submitted!`);
-		// setTimeout(clearInput, 1000);
+        // invalidateAll();
+		goto(`/store/${inputValue}`);
 	}
 }
 
@@ -144,7 +147,7 @@ if(browser){
 
 </script>
 
-  <form autocomplete="off" class="z-50 w-full" on:submit|preventDefault={submitValue}>
+  <form autocomplete="off" class="z-10 w-full" on:submit|preventDefault={submitValue}>
     <div class="autocomplete relative flex">
       <input id="autocomplete-input" class="{classNames}" 
                        type="text" 
@@ -155,7 +158,7 @@ if(browser){
                        on:input={filterItems}>
 
                        {#if filteredItems.length > 0 && inputValue && !closeList}
-                       <ul class="bg-gray-800 text-gray-200 rounded-lg w-full absolute top-11" id="autocomplete-items-list z-50" transition:fade={{duration:100}}>
+                       <ul class="bg-gray-800 text-gray-200 rounded-lg w-full select-none absolute top-11" id="autocomplete-items-list z-10" transition:fade={{duration:100}}>
                            {#each filteredItems as item, i}
                            <!-- svelte-ignore a11y-click-events-have-key-events -->
                            <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
