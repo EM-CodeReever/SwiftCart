@@ -9,7 +9,7 @@ export let description: string = "";
         <p class=" text-xs sm:text-sm max-w-sm flex text-left flex-grow">{description}Lorem ipsum dolor sit amet consectetur, adipisicing elit. Some more content for the card escirption </p>
         <button class="btn btn-sm sm:btn-md w-fit">Shop now</button>
       </span>
-      <div class="rounded-lg w-80 bg-gray-900 aspect-square sm:flex relative justify-center items-center">
+      <div class="rounded-lg w-80 bg-gray-900 aspect-square hidden sm:flex relative justify-center items-center">
         <p class="font-semibold text-gray-200">Product image here</p>
       </div>
 </div>
