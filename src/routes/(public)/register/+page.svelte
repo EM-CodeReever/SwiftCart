@@ -20,16 +20,16 @@
 <svelte:head>
     <title>SwiftCart</title>
 </svelte:head>
-<SuperDebug data={$form} />
+<!-- <SuperDebug data={$form} /> -->
 <section class="min-h-screen w-full flex flex-col items-center">
-    <div class="w-full bg-gray-700 text-2xl text-gray-200 font-semibold h-fit p-2 flex justify-center items-center">
+    <div class="w-full bg-[#1F4172] text-2xl text-gray-200 font-semibold h-fit p-2 flex justify-center items-center">
         <button on:click={()=>{goto("/",{invalidateAll:true})}} class="hover:bg-[#00000032] p-2 flex space-x-2 rounded-lg text-gray-200 font-bold text-2xl items-center">
             <SwiftCartLogo />
             <span>SwiftCart</span>
           </button>
     </div>
     {#if !submissionSuccessful}
-    <form class="mx-auto flex w-full max-w-lg flex-col rounded-xl border border-border bg-backgroundSecondary mt-10 shadow-md p-5" method="post" action="?/register" out:fade={{duration:500}} use:enhance={()=>{
+    <form class="mx-auto flex w-full max-w-lg flex-col rounded-xl sm:border sm:border-border sm:bg-backgroundSecondary mt-10 p-5" method="post" action="?/register" out:fade={{duration:500}} use:enhance={()=>{
         return async ({ result, update }) => {
          console.log(result.type);
          
