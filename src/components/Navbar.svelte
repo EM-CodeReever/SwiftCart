@@ -40,7 +40,7 @@
     }
 </script>
 
-<div class="navbar p-2 shadow-none bg-gray-700">
+<div class="navbar p-2 shadow-none bg-[#1F4172]">
 	<div class="navbar-start w-fit">
 		<a href="/" class="hover:bg-[#00000032] p-2 flex space-x-2 rounded-lg text-gray-200 font-bold text-2xl items-center">
       <SwiftCartLogo />
@@ -50,8 +50,8 @@
 	<div class="navbar-center px-5 w-full">
 		<span class="flex-grow max-w-2xl hidden md:flex">
       <!-- <input class="" placeholder="Search..." /> -->
-      <AutocompleteInput classNames="input input-sm input-block bg-[#00000032] border-transparent text-gray-200 placeholder:text-sm rounded-r-none">
-        <button class="btn btn-sm bg-[#00000032] rounded-l-none hover:btn-error">
+      <AutocompleteInput products={data.dummyjson.products} classNames="input input-block bg-[#00000032] border-transparent text-gray-200 placeholder:text-sm rounded-r-none">
+        <button class="btn bg-[#00000032] rounded-l-none hover:btn-error">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
           </svg>      
@@ -123,10 +123,10 @@
     </div>
 	</div>
 </div>
-<hr class="border-gray-600">
-<div class="py-2 justify-center items-center px-3 sm:px-8 bg-gray-700 flex md:hidden">
+<!-- <hr class="border-gray-600"> -->
+<div class="py-2 justify-center items-center px-3 sm:px-8 bg-[#1F4172] flex md:hidden">
   <span class="flex-grow flex">
-    <AutocompleteInput classNames="input input-sm input-block bg-[#00000032] border-transparent text-gray-200 placeholder:text-sm rounded-r-none">
+    <AutocompleteInput products={data.dummyjson.products} classNames="input input-sm input-block bg-[#00000032] border-transparent text-gray-200 placeholder:text-sm rounded-r-none">
       <button class="btn btn-sm bg-[#00000032] rounded-l-none hover:btn-error">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
