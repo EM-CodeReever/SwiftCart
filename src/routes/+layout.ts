@@ -18,7 +18,8 @@ export const load: LayoutLoad = async ({ fetch, data, depends }: LayoutLoadEvent
     data: { session },
   } = await supabase.auth.getSession()
 
+  let dummyjson
+    dummyjson = await fetch('https://dummyjson.com/products?limit=0').then(res => res.json())
   
-  
-  return { supabase, session, customer, tempFirstName }
+  return { supabase, session, customer, tempFirstName, dummyjson }
 }
