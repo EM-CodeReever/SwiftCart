@@ -7,7 +7,7 @@
     import { onMount } from "svelte";
     import HomeSlide from "$components/HomeSlide.svelte";
     import AutocompleteInput from "$components/AutocompleteInput.svelte";
-    import CategoryCard from "$components/CategoryCard.svelte";
+    import CategoryCard from "$components/ProductCard.svelte";
     export let data: PageData;
     let { supabase, session } = data;
     $: ({ supabase, session } = data);
@@ -26,9 +26,9 @@
         gap     : '1rem',
         autoplay: true,
         arrows  : true,
-        height  : 'fit-content',
+        height  : 'calc(100vh - 95px)',
         // width   : '100%',
-      } } hasTrack={ false } class="from-gray-700 to-white bg-gradient-to-b  p-1 w-full">
+      } } hasTrack={ false } class="from-[#1F4172] to-[#F1B4BB] bg-gradient-to-b  p-1 w-full">
         <div style="position: relative">
           <SplideTrack>
               <SplideSlide class="flex justify-center items-center md:space-x-10 px-10 lg:px-20 xl:px-36 py-5" >
@@ -55,23 +55,16 @@
       </Splide>
       <div>
         
-        <div class="bg-none">
+        <!-- <div class="bg-none">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="max-w-2xl mx-auto py-10 lg:max-w-none">
-              <h2 class="text-2xl lg:text-4xl font-extrabold text-center text-gray-800 mb-10">Categories</h2>
-              <div class="mt-6 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:gap-y-12">
-              <CategoryCard />
-              <CategoryCard />
-              <CategoryCard />
-              <CategoryCard />
-              <CategoryCard />
-              <CategoryCard />
-              <CategoryCard />
-              <CategoryCard />
+          <div class="mx-auto py-10 flex flex-col items-center">
+              <h2 class="text-2xl lg:text-3xl font-semibold text-gray-800 mb-5">Categories</h2>
+              <div class="mt-6 w-full home-grid-3:max-w-lg md:max-w-4xl home-grid-1:max-w-none grid-cols-1 home-grid-3:grid-cols-2 grid md:grid-cols-3 home-grid-1:grid-cols-4 gap-8">
+              
           </div>
           </div>
       </div>
-      </div>
+      </div> -->
 </section>
 
 <style>
